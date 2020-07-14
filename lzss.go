@@ -51,7 +51,7 @@ func findMatch(input []byte, startPos int, lookback int) (int, int) {
 
 		offset := startPos - i
 		length := 1
-		for startPos+length < len(input) && input[offset+length] == input[startPos+length] && length < 4094 {
+		for startPos+length < len(input) && input[i+length] == input[startPos+length] && length < 4094 {
 			length++
 		}
 
@@ -88,12 +88,15 @@ func encode(input []byte) []byte {
 		inPos += length
 	}
 
+	// Add masks so the length of masks is a multiple of 8
+	masks = append(masks, make([]bool, 8)...)
+
 	// Add the bit masks
 	// At the moment this needs to copy the hole array
 	// Todo: dont copy the encoded byte by byte
 	output := make([]byte, 0, len(encoded)+len(encoded)/9)
 	for i := 0; i < len(encoded); i++ {
-		if i%9 == 0 {
+		if i%8 == 0 {
 			mask := masks[i : i+8] // Maybe 7
 			output = append(output, createBitMask(mask))
 		}
@@ -105,7 +108,7 @@ func encode(input []byte) []byte {
 }
 
 func main() {
-	s := []byte("xzxzxzxz")
+	s := []byte("Hose Dose Rose")
 	for i, b := range s {
 		fmt.Printf("%d: %08b\n", i, b)
 	}
