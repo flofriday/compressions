@@ -108,7 +108,7 @@ func encode(input []byte) []byte {
 }
 
 func main() {
-	s := []byte("Hose Dose Rose")
+	s := []byte("fischers fritz fischt frische fische")
 	for i, b := range s {
 		fmt.Printf("%d: %08b\n", i, b)
 	}
@@ -119,4 +119,8 @@ func main() {
 	for i, b := range tmp {
 		fmt.Printf("%d: %08b\n", i, b)
 	}
+
+	fmt.Println()
+	fmt.Printf("Bytes before: %d\n", len(s))
+	fmt.Printf("Bytes after: %d\n", len(tmp))
 }
