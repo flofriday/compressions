@@ -28,5 +28,5 @@ Options:
 ```
 
 ### Resources
-http://wiki.xentax.com/index.php/LZSS
-http://michael.dipperstein.com/lzss/ 
+* http://wiki.xentax.com/index.php/LZSS
+* http://michael.dipperstein.com/lzss/ 
